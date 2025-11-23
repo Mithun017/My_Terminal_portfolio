@@ -6,9 +6,11 @@ import { useStore } from '@/hooks/useStore';
 import { easing } from 'maath';
 import { fileSystem } from '@/data/fileSystem';
 
+import { Project } from '@/types';
+
 export const CameraRig = () => {
     const { currentView, selectedProject } = useStore();
-    const projects = fileSystem.projects.items as any[];
+    const projects = fileSystem.projects.items as Project[];
 
     useFrame((state, delta) => {
         const targetPos = new Vector3(0, 0, 10);

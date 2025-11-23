@@ -52,7 +52,7 @@ export const Profile = () => {
                             Current Mission
                         </h3>
                         <p className="italic text-gray-400">
-                            "To leverage Generative AI and Agentic Workflows to build the next generation of intelligent software."
+                            &quot;To leverage Generative AI and Agentic Workflows to build the next generation of intelligent software.&quot;
                         </p>
                     </div>
 

@@ -2,9 +2,10 @@
 
 import { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Text, Html } from '@react-three/drei';
+import { Text } from '@react-three/drei';
 import { useStore } from '@/hooks/useStore';
 import { Project } from '@/types';
+import { Mesh } from 'three';
 
 interface ProjectCardProps {
     project: Project;
@@ -13,11 +14,11 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard = ({ project, position, index }: ProjectCardProps) => {
-    const mesh = useRef<any>(null);
+    const mesh = useRef<Mesh>(null);
     const [hovered, setHover] = useState(false);
     const { setSelectedProject, setView } = useStore();
 
-    useFrame((state, delta) => {
+    useFrame((state) => {
         if (mesh.current) {
             // Floating animation
             mesh.current.position.y = position[1] + Math.sin(state.clock.elapsedTime + index) * 0.1;

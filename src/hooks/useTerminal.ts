@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { useStore } from './useStore';
 import { fileSystem } from '@/data/fileSystem';
 import { Project } from '@/types';

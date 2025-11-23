@@ -2,12 +2,12 @@
 
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Color } from 'three';
+import { Color, PointLight } from 'three';
 import { useStore } from '@/hooks/useStore';
 
 export const Lights = () => {
     const { theme } = useStore();
-    const lightRef = useRef<any>(null);
+    const lightRef = useRef<PointLight>(null);
 
     useFrame(() => {
         if (lightRef.current) {
