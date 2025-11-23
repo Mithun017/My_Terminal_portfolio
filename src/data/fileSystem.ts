@@ -91,6 +91,16 @@ GITHUB: [Insert GitHub]
     },
     "help": {
         type: "system",
-        content: "Available commands: about, projects, skills, experience, contact, run <project_id>, clear, theme"
+        content: `
+Available Commands:
+  About       :: View profile information
+  Projects    :: List all projects
+  Skills      :: View technical skills
+  Experience  :: View work experience
+  Contact     :: View contact details
+  Run <id>    :: Launch a specific project
+  Clear       :: Clear the terminal
+  Theme       :: Change the color theme
+`
     }
 };
