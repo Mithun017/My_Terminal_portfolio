@@ -27,7 +27,7 @@ export const Terminal = () => {
 
     return (
         <div
-            className="fixed inset-0 w-full h-full bg-[#300a24]/95 backdrop-blur-md flex flex-col font-mono text-sm md:text-base z-[100] pointer-events-auto"
+            className="fixed inset-0 w-full h-full bg-[#300a24] flex flex-col font-mono text-sm md:text-base z-[100] pointer-events-auto border-none m-0 p-0"
             onClick={() => inputRef.current?.focus()}
         >
             {/* Window Header */}
@@ -41,22 +41,13 @@ export const Terminal = () => {
             </div>
 
             {/* Pinned Neofetch Header */}
-            <div className="bg-[#300a24]/95 p-6 border-b border-gray-700 flex-shrink-0">
-                <div className="flex flex-col md:flex-row gap-8 items-start">
-                    {/* Profile Image */}
-                    <div className="relative w-32 h-32 md:w-48 md:h-48 flex-shrink-0 border-4 border-white/10 rounded-lg overflow-hidden shadow-2xl">
-                        <Image
-                            src="/profile.jpg"
-                            alt="Mithun"
-                            fill
-                            className="object-cover"
-                        />
-                    </div>
+            <div className="bg-[#300a24] p-4 md:p-6 border-b border-gray-700 flex-shrink-0">
+                <div className="flex flex-col md:flex-row gap-8 items-start justify-between">
 
-                    {/* Info & ASCII Name */}
+                    {/* Info & ASCII Name (Left Side) */}
                     <div className="flex flex-col justify-start space-y-4 w-full overflow-hidden">
                         {/* ASCII Name */}
-                        <pre className="text-[#8ae234] font-bold text-xs md:text-sm leading-none tracking-wider overflow-x-auto whitespace-pre">
+                        <pre className="text-[#8ae234] font-bold text-[10px] md:text-sm leading-none tracking-wider overflow-x-auto whitespace-pre scrollbar-none">
                             {`
 ███╗   ███╗██╗████████╗██╗  ██╗██╗   ██╗███╗   ██╗
 ████╗ ████║██║╚══██╔══╝██║  ██║██║   ██║████╗  ██║
@@ -67,7 +58,7 @@ export const Terminal = () => {
 `}
                         </pre>
 
-                        <div className="space-y-1 text-gray-300 font-mono">
+                        <div className="space-y-1 text-gray-300 font-mono text-xs md:text-base">
                             <div className="text-gray-500 mb-2">---------------------------------------------------</div>
                             <div className="flex gap-2">
                                 <span className="text-[#8ae234] font-bold min-w-[80px]">Role:</span>
@@ -92,17 +83,28 @@ export const Terminal = () => {
 
                             {/* Color Bars */}
                             <div className="flex gap-2 mt-4 pt-2">
-                                <div className="w-8 h-4 bg-black"></div>
-                                <div className="w-8 h-4 bg-red-500"></div>
-                                <div className="w-8 h-4 bg-green-500"></div>
-                                <div className="w-8 h-4 bg-yellow-500"></div>
-                                <div className="w-8 h-4 bg-blue-500"></div>
-                                <div className="w-8 h-4 bg-purple-500"></div>
-                                <div className="w-8 h-4 bg-cyan-500"></div>
-                                <div className="w-8 h-4 bg-white"></div>
+                                <div className="w-6 h-3 md:w-8 md:h-4 bg-black"></div>
+                                <div className="w-6 h-3 md:w-8 md:h-4 bg-red-500"></div>
+                                <div className="w-6 h-3 md:w-8 md:h-4 bg-green-500"></div>
+                                <div className="w-6 h-3 md:w-8 md:h-4 bg-yellow-500"></div>
+                                <div className="w-6 h-3 md:w-8 md:h-4 bg-blue-500"></div>
+                                <div className="w-6 h-3 md:w-8 md:h-4 bg-purple-500"></div>
+                                <div className="w-6 h-3 md:w-8 md:h-4 bg-cyan-500"></div>
+                                <div className="w-6 h-3 md:w-8 md:h-4 bg-white"></div>
                             </div>
                         </div>
                     </div>
+
+                    {/* Profile Image (Right Side) */}
+                    <div className="relative w-32 h-32 md:w-48 md:h-48 flex-shrink-0 border-4 border-white/10 rounded-lg overflow-hidden shadow-2xl self-start md:self-auto">
+                        <Image
+                            src="/profile.jpg"
+                            alt="Mithun"
+                            fill
+                            className="object-cover"
+                        />
+                    </div>
+
                 </div>
             </div>
 
