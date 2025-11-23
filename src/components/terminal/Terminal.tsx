@@ -42,7 +42,7 @@ export const Terminal = () => {
             {/* Body */}
             <div className="flex-1 p-4 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-900 scrollbar-track-transparent" onClick={() => inputRef.current?.focus()}>
                 {history.map((item, i) => (
-                    <div key={i} className={`mb-2 ${item.type === 'command' ? 'text-cyan-400' : item.type === 'error' ? 'text-red-400' : 'text-gray-300'}`}>
+                    <div key={i} className={`mb-2 ${item.type === 'command' ? 'text-white' : item.type === 'error' ? 'text-red-400' : 'text-gray-300'}`}>
                         {item.type === 'command' && <span className="mr-2 text-green-500">➜</span>}
                         <span className="whitespace-pre-wrap">{item.content}</span>
                     </div>
@@ -57,7 +57,8 @@ export const Terminal = () => {
                         type="text"
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
-                        className="flex-1 bg-transparent border-none outline-none text-white placeholder-gray-600"
+                        className="flex-1 bg-transparent border-none outline-none placeholder-gray-600"
+                        style={{ color: '#FFFFFF', caretColor: '#FFFFFF', backgroundColor: 'transparent' }}
                         autoFocus
                         spellCheck={false}
                     />

@@ -15,7 +15,7 @@ export const Scene = () => {
     const projects = fileSystem.projects.items as Project[];
     const { currentView } = useStore();
 
-    const showProjects = currentView === 'home' || currentView === 'projects';
+    const showProjects = currentView === 'projects';
 
     return (
         <div className="absolute inset-0 z-0">
