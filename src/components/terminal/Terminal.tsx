@@ -26,32 +26,45 @@ export const Terminal = () => {
 
     return (
         <div
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] max-w-full h-[500px] bg-black/80 backdrop-blur-md border border-cyan-500/30 rounded-lg shadow-2xl overflow-hidden flex flex-col font-mono text-sm md:text-base z-[100] pointer-events-auto"
+            className="fixed inset-0 w-full h-full bg-[#300a24]/95 backdrop-blur-md flex flex-col font-mono text-sm md:text-base z-[100] pointer-events-auto"
             onClick={() => inputRef.current?.focus()}
         >
             {/* Header */}
-            <div className="bg-gray-900/90 px-4 py-2 flex items-center justify-between border-b border-gray-800">
-                <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-red-500" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                    <div className="w-3 h-3 rounded-full bg-green-500" />
+            <div className="bg-[#3e3e3e] px-4 py-2 flex items-center justify-between border-b border-[#2d2d2d]">
+                <div className="text-gray-300 text-xs font-bold text-center w-full">mithun@portfolio: ~</div>
+                <div className="flex items-center gap-2 absolute right-4">
+                    <div className="w-3 h-3 rounded-full bg-[#df4b16]" /> {/* Close */}
+                    <div className="w-3 h-3 rounded-full bg-gray-400" /> {/* Maximize */}
+                    <div className="w-3 h-3 rounded-full bg-gray-400" /> {/* Minimize */}
                 </div>
-                <div className="text-gray-400 text-xs">M_MITHUN@PORTFOLIO:~</div>
             </div>
 
             {/* Body */}
-            <div className="flex-1 p-4 overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-900 scrollbar-track-transparent" onClick={() => inputRef.current?.focus()}>
+            <div className="flex-1 p-4 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent" onClick={() => inputRef.current?.focus()}>
                 {history.map((item, i) => (
-                    <div key={i} className={`mb-2 ${item.type === 'command' ? 'text-white' : item.type === 'error' ? 'text-red-400' : 'text-gray-300'}`}>
-                        {item.type === 'command' && <span className="mr-2 text-green-500">➜</span>}
-                        <span className="whitespace-pre-wrap">{item.content}</span>
+                    <div key={i} className="mb-1">
+                        {item.type === 'command' ? (
+                            <div className="text-white">
+                                <span className="text-[#8ae234] font-bold">mithun@portfolio</span>
+                                <span className="text-white">:</span>
+                                <span className="text-[#729fcf] font-bold">~</span>
+                                <span className="text-white mr-2">$</span>
+                                <span>{item.content}</span>
+                            </div>
+                        ) : (
+                            <div className={`${item.type === 'error' ? 'text-red-400' : 'text-white'} whitespace-pre-wrap`}>
+                                {item.content}
+                            </div>
+                        )}
                     </div>
                 ))}
 
                 {/* Input Line */}
-                <form onSubmit={handleSubmit} className="flex items-center mt-2">
-                    <span className="text-green-500 mr-2">➜</span>
-                    <span className="text-cyan-400 mr-2">~</span>
+                <form onSubmit={handleSubmit} className="flex items-center mt-1">
+                    <span className="text-[#8ae234] font-bold">mithun@portfolio</span>
+                    <span className="text-white">:</span>
+                    <span className="text-[#729fcf] font-bold">~</span>
+                    <span className="text-white mr-2">$</span>
                     <input
                         ref={inputRef}
                         type="text"
