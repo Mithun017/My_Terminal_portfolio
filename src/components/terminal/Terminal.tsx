@@ -27,7 +27,7 @@ export const Terminal = () => {
 
     return (
         <div
-            className="fixed inset-0 w-full h-full bg-[#300a24] flex flex-col font-mono text-sm md:text-base z-[100] pointer-events-auto border-none m-0 p-0"
+            className="fixed inset-0 w-full h-full bg-[#300a24] flex flex-col font-mono text-sm md:text-base z-[100] pointer-events-auto border-l-[6px] border-r-[6px] border-b-[6px] border-t-[16px] border-[#3e3e3e]"
             onClick={() => inputRef.current?.focus()}
         >
             {/* Window Header */}
