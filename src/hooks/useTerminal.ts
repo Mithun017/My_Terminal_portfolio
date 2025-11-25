@@ -66,27 +66,38 @@ export const useTerminal = () => {
                 setView('projects');
                 const projects = fileSystem.projects.items as Project[];
                 const projectList = projects.map(
-                    (p) => `[${p.id}] ${p.title} - ${p.description}`
-                ).join('\n');
+                    (p, index) => `${String(index + 1).padStart(2, ' ')}. [${p.id}] ${p.title} - ${p.description}`
+                ).join('\n\n');
                 addToHistory({ type: 'output', content: projectList });
                 break;
 
             case 'run':
             case 'open':
+            case 'project':
                 if (args.length === 0) {
-                    addToHistory({ type: 'error', content: 'Usage: run <project_id>' });
+                    addToHistory({ type: 'error', content: 'Usage: project <id or number>\nExample: project 1 or project crime-abstractor' });
                     return;
                 }
-                const projectId = args[0].toLowerCase();
+                const projectInput = args[0].toLowerCase();
                 const allProjects = fileSystem.projects.items as Project[];
-                const project = allProjects.find((p) => p.id === projectId);
+
+                // Check if input is a number (1-15)
+                let project;
+                const projectNumber = parseInt(projectInput);
+                if (!isNaN(projectNumber) && projectNumber >= 1 && projectNumber <= allProjects.length) {
+                    // Access by number (1-indexed)
+                    project = allProjects[projectNumber - 1];
+                } else {
+                    // Access by ID
+                    project = allProjects.find((p) => p.id === projectInput);
+                }
 
                 if (project) {
-                    setSelectedProject(projectId);
-                    setView('projects'); // Ensure we are in projects view
+                    setSelectedProject(project.id);
+                    setView('projects');
                     addToHistory({ type: 'output', content: `Launching ${project.title}...\n${project.details}` });
                 } else {
-                    addToHistory({ type: 'error', content: `Project '${projectId}' not found.` });
+                    addToHistory({ type: 'error', content: `Project '${projectInput}' not found.\nUse 'projects' to see all available projects.` });
                 }
                 break;
 

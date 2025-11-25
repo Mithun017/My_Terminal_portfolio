@@ -4,12 +4,11 @@ import { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import * as random from 'maath/random/dist/maath-random.esm';
-import { Points as ThreePoints } from 'three';
 
-export const Stars = (props: Record<string, unknown>) => {
-    const ref = useRef<ThreePoints>(null);
+export const Stars = (props: any) => {
+    const ref = useRef<any>(null);
     // Using 6000 to ensure it's divisible by 3 (x, y, z) to avoid NaN errors
-    const sphere = useMemo(() => random.inSphere(new Float32Array(6000), { radius: 30 }) as Float32Array, []);
+    const sphere = useMemo(() => random.inSphere(new Float32Array(6000), { radius: 30 }), []);
 
     useFrame((state, delta) => {
         if (ref.current) {
