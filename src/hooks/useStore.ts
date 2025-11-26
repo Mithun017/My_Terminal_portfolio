@@ -5,6 +5,7 @@ type State = {
     selectedProject: string | null;
     theme: string;
     isTerminalOpen: boolean;
+    showLandingPage: boolean;
 };
 
 type Actions = {
@@ -12,6 +13,7 @@ type Actions = {
     setSelectedProject: (id: string | null) => void;
     setTheme: (theme: string) => void;
     toggleTerminal: () => void;
+    setShowLandingPage: (show: boolean) => void;
 };
 
 export const useStore = create<State & Actions>((set) => ({
@@ -19,8 +21,10 @@ export const useStore = create<State & Actions>((set) => ({
     selectedProject: null,
     theme: 'cyan',
     isTerminalOpen: true,
+    showLandingPage: true,
     setView: (view) => set({ currentView: view }),
     setSelectedProject: (id) => set({ selectedProject: id }),
     setTheme: (theme) => set({ theme }),
     toggleTerminal: () => set((state) => ({ isTerminalOpen: !state.isTerminalOpen })),
+    setShowLandingPage: (show) => set({ showLandingPage: show }),
 }));

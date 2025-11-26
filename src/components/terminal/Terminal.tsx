@@ -98,15 +98,7 @@ export const Terminal = () => {
                             </div>
                         </div>
 
-                        {/* Profile Image (Right Side) */}
-                        <div className="relative w-32 h-32 md:w-48 md:h-48 flex-shrink-0 border-4 border-white/10 rounded-lg overflow-hidden shadow-2xl self-start md:self-auto">
-                            <Image
-                                src="/profile.jpg"
-                                alt="Mithun"
-                                fill
-                                className="object-cover"
-                            />
-                        </div>
+
 
                     </div>
                 </div>
