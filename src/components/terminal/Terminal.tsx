@@ -65,11 +65,11 @@ export const Terminal = () => {
                                 <div className="text-gray-500 mb-2">---------------------------------------------------</div>
                                 <div className="flex gap-2">
                                     <span className="text-[#8ae234] font-bold min-w-[80px]">Role:</span>
-                                    <span>AI & Data Science Undergraduate</span>
+                                    <span>AI & Data Science</span>
                                 </div>
                                 <div className="flex gap-2">
                                     <span className="text-[#8ae234] font-bold min-w-[80px]">Stack:</span>
-                                    <span>Full Stack & AI Agent Dev</span>
+                                    <span>Data Science & AI and Cloud </span>
                                 </div>
                                 <div className="flex gap-2">
                                     <span className="text-[#8ae234] font-bold min-w-[80px]">OS:</span>
