@@ -377,8 +377,8 @@ Feel free to reach out for collaborations, projects, or just a tech conversation
         content: `
 Available Commands:
   About        :: View profile information
-  Projects     :: List all projects
-  Project <id> :: Launch a specific project
+  Projects     :: View all projects with details
+  Project <id> :: (Optional) View specific project
   Skills       :: View technical skills
   Experience   :: View work experience
   Contact      :: View contact details

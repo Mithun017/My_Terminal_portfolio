@@ -118,7 +118,19 @@ export const Terminal = () => {
                             </div>
                         ) : (
                             <div className={`${item.type === 'error' ? 'text-red-400' : 'text-white'} whitespace-pre-wrap`}>
-                                {item.content}
+                                {item.content.split(/(https?:\/\/[^\s]+)/g).map((part, index) =>
+                                    part.match(/https?:\/\/[^\s]+/) ? (
+                                        <a
+                                            key={index}
+                                            href={part}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-[#729fcf] hover:underline cursor-pointer"
+                                        >
+                                            {part}
+                                        </a>
+                                    ) : part
+                                )}
                             </div>
                         )}
                     </div>

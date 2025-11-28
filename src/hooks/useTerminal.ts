@@ -63,41 +63,73 @@ export const useTerminal = () => {
 
             case 'projects':
             case 'work':
+            case 'project': // 'project' without args now behaves like 'projects'
+                if (command === 'project' && args.length > 0) {
+                    // Handle specific project lookup (project <id>)
+                    const projectInput = args[0].toLowerCase();
+                    const allProjects = fileSystem.projects.items as Project[];
+
+                    // Check if input is a number (1-15)
+                    let project;
+                    const projectNumber = parseInt(projectInput);
+                    if (!isNaN(projectNumber) && projectNumber >= 1 && projectNumber <= allProjects.length) {
+                        // Access by number (1-indexed)
+                        project = allProjects[projectNumber - 1];
+                    } else {
+                        // Access by ID
+                        project = allProjects.find((p) => p.id === projectInput);
+                    }
+
+                    if (project) {
+                        setSelectedProject(project.id);
+                        setView('projects');
+                        addToHistory({ type: 'output', content: `Launching ${project.title}...\n${project.details}` });
+                    } else {
+                        addToHistory({ type: 'error', content: `Project '${projectInput}' not found.\nUse 'projects' to see all available projects.` });
+                    }
+                    break;
+                }
+
+                // Default behavior: Show ALL projects with details
                 setView('projects');
                 const projects = fileSystem.projects.items as Project[];
                 const projectList = projects.map(
-                    (p, index) => `${String(index + 1).padStart(2, ' ')}. [${p.id}] ${p.title} - ${p.description}`
-                ).join('\n\n');
+                    (p, index) => `
+${index + 1}. ${p.title}
+   ${p.description}
+   ${p.details.trim()}
+   
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`
+                ).join('\n');
                 addToHistory({ type: 'output', content: projectList });
                 break;
 
             case 'run':
             case 'open':
-            case 'project':
+                // Keep run/open for specific ID access if needed, or redirect to project logic
                 if (args.length === 0) {
-                    addToHistory({ type: 'error', content: 'Usage: project <id or number>\nExample: project 1 or project crime-abstractor' });
+                    addToHistory({ type: 'error', content: 'Usage: run <id or number>' });
                     return;
                 }
-                const projectInput = args[0].toLowerCase();
-                const allProjects = fileSystem.projects.items as Project[];
-
-                // Check if input is a number (1-15)
-                let project;
-                const projectNumber = parseInt(projectInput);
-                if (!isNaN(projectNumber) && projectNumber >= 1 && projectNumber <= allProjects.length) {
-                    // Access by number (1-indexed)
-                    project = allProjects[projectNumber - 1];
+                // Reuse the logic from above or just call the command handler recursively? 
+                // Simpler to just copy the specific lookup logic or let 'project' handle it.
+                // For now, let's keep run/open strictly for specific opening.
+                const runInput = args[0].toLowerCase();
+                const allRunProjects = fileSystem.projects.items as Project[];
+                let runProject;
+                const runNumber = parseInt(runInput);
+                if (!isNaN(runNumber) && runNumber >= 1 && runNumber <= allRunProjects.length) {
+                    runProject = allRunProjects[runNumber - 1];
                 } else {
-                    // Access by ID
-                    project = allProjects.find((p) => p.id === projectInput);
+                    runProject = allRunProjects.find((p) => p.id === runInput);
                 }
 
-                if (project) {
-                    setSelectedProject(project.id);
+                if (runProject) {
+                    setSelectedProject(runProject.id);
                     setView('projects');
-                    addToHistory({ type: 'output', content: `Launching ${project.title}...\n${project.details}` });
+                    addToHistory({ type: 'output', content: `Launching ${runProject.title}...\n${runProject.details}` });
                 } else {
-                    addToHistory({ type: 'error', content: `Project '${projectInput}' not found.\nUse 'projects' to see all available projects.` });
+                    addToHistory({ type: 'error', content: `Project '${runInput}' not found.` });
                 }
                 break;
 
